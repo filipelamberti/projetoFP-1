@@ -22,24 +22,58 @@
 </style>
 
 <div align="center"> 
-  <form onsubmit="" role="form" method="POST" action="" >{% csrf_token %}
+  <form onsubmit="" role="form" method="POST" action="/fluxo_caixa/pesquisar/" >{% csrf_token %}
     <div class="form-group">
       <div class="row">
         <div class="col-md-5">          
           <div id="datetimepicker1" class="input-append date " style="float: left; ">
-            <input type="text" name="" style="height: 35px; width: 145px;" placeholder="Início:">
+            <input type="text" name="data_Inicial" style="height: 35px; width: 145px;" placeholder="Início:">
             <span class="add-on" style="height: 35px;">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
             </span>
           </div>         
           <div id="datetimepicker2" class="input-append date " >
-            <input type="text" name="" style="height: 35px; width: 145px;" placeholder="Fim:">
+            <input type="text" name="data_Final" style="height: 35px; width: 145px;" placeholder="Fim:">
             <span class="add-on" style="height: 35px;">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
             </span>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        
+        <div class="col-md-6" align="center">
+          <button type="submit" class="btn btn-primary">Pesquisar <span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      </div>
+    </div>  
+  </form>
+</div>
+<div id="table_fluxo" class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Descrição:</th>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Valor R$:</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for conta in contas %}
+          <tr>            
+            <td>{{ conta.descricao }}</td>
+            <td>{{ conta.data|date:"d/m/Y" }}</td>
+            <td>{{ conta.tipo }}</td>
+            <td>{{ conta.valor }}</td>
+          </tr>
+        {% endfor %}
+          <tr>
+            <td colspan="2"></td>
+            <td><span style="font-weight:bold;">Total a Receber:</span> {{tot_receber}}</td>
+            <td><span style="font-weight:bold;">Total a Pagar:</span> {{tot_pagar}}</td>
+          </tr>  
+        </tbody>
+      </table>
+</div>
     
         
 

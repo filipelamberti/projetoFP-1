@@ -59,10 +59,19 @@
     <!-- FIM RODAPE -->
 
     <!-- JavaScript -->
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-datetimepicker.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-datetimepicker.pt-BR.js"></script>
-   <!-- FIM JavaScript -->
+
+    <script type="text/javascript">
+      $('#datetimepicker').datetimepicker({
+        format: 'dd/MM/yyyy hh:mm:ss',
+        language: 'pt-BR'
+      });
+    </script>
+
+    <!-- FIM JavaScript -->
     
   </body>
 </html>
