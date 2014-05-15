@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Fluxo de Caixa{% endblock titulo %}
+
+{% block conteudo %}
+
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      format: 'dd/MM/yyyy',
+      language: 'pt-BR'
+    });
+    $('#datetimepicker2').datetimepicker({
+      format: 'dd/MM/yyyy',
+      language: 'pt-BR'
+    });
+  });
+  
+</script>
+<style type="text/css" media="print">
+  nav, footer, div[align='center'], .btn{display: none;}
+</style>
+
+<div align="center"> 
+  <form onsubmit="" role="form" method="POST" action="" >{% csrf_token %}
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-5">          
+          <div id="datetimepicker1" class="input-append date " style="float: left; ">
+            <input type="text" name="" style="height: 35px; width: 145px;" placeholder="Início:">
+            <span class="add-on" style="height: 35px;">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+            </span>
+          </div>         
+          <div id="datetimepicker2" class="input-append date " >
+            <input type="text" name="" style="height: 35px; width: 145px;" placeholder="Fim:">
+            <span class="add-on" style="height: 35px;">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+    
+        
+
+{% endblock conteudo %}
