@@ -14,9 +14,6 @@ def fluxoPesquisar(request):
         data_Final = request.POST.get('data_Final', '%d/%m/%Y')
         total = 0
 
-        except:
-            contas = []
-
         return render(request, 'fluxo_caixa/lista_fluxo.html', {'contas': contas, 'total': total, 'data_Inicial': data_Inicial, 'data_Final': data_Final})
     
     return render(request, 'fluxo_caixa/lista_fluxo.html', {'contas': []})
