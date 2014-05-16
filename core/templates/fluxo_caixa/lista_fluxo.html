@@ -4,77 +4,64 @@
 
 {% block conteudo %}
 
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-      format: 'dd/MM/yyyy',
-      language: 'pt-BR'
-    });
-    $('#datetimepicker2').datetimepicker({
-      format: 'dd/MM/yyyy',
-      language: 'pt-BR'
-    });
-  });
-  
-</script>
-<style type="text/css" media="print">
-  nav, footer, div[align='center'], .btn{display: none;}
-</style>
-
 <div align="center"> 
-  <form onsubmit="" role="form" method="POST" action="/fluxo_caixa/pesquisar/" >{% csrf_token %}
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-5">          
-          <div id="datetimepicker1" class="input-append date " style="float: left; ">
-            <input type="text" name="data_Inicial" style="height: 35px; width: 145px;" placeholder="Início:">
-            <span class="add-on" style="height: 35px;">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-            </span>
-          </div>         
-          <div id="datetimepicker2" class="input-append date " >
-            <input type="text" name="data_Final" style="height: 35px; width: 145px;" placeholder="Fim:">
-            <span class="add-on" style="height: 35px;">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-            </span>
+  <form  class="form-horizontal" role"form" method="POST" action="/fluxo_caixa/pesquisar/" >{% csrf_token %}
+    <div class="col-sm-6" style="height:75px;">
+      <div class='col-md-5'>  
+        <div class="form-group">
+          <label> Data Inicial</label>
+          <div >
+          <input type="date" class="form-control" name="dataInicial" value="{{ dataInicial|date:"d/m/Y" }}" placeholder="01/01/2014" style="margin" />
+         
           </div>
         </div>
-        
-        <div class="col-md-6" align="center">
+      </div>
+
+        <div class="col-md-5">
+        <div class="form-group">          
+          <label> Data Final</label>
+        <div>
+          <input type='date' class="form-control" name="dataFinal" value="{{ dataFinal|date:"d/m/Y" }}" placeholder="01/01/2014"/>
+          
+      </div>
+      </div>
+      </div>
+    </div>
+     <div class="row">
+        <div class="col-md-2" style="margin-top: 18px;" align="center">
           <button type="submit" class="btn btn-primary">Pesquisar <span class="glyphicon glyphicon-search"></span></button>
         </div>
       </div>
-    </div>  
   </form>
 </div>
-<div id="table_fluxo" class="table-responsive">
-      <table class="table table-striped">
+<hr>
+<br />
+<div class="table-responsive">
+      <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Descrição:</th>
+            <th>-</th>
+            <th>Pessoa</th>
+            <th>Descrição da Conta</th>
             <th>Data</th>
             <th>Tipo</th>
-            <th>Valor R$:</th>
+            <th class="success">Total</th>
           </tr>
         </thead>
         <tbody>
         {% for conta in contas %}
-          <tr>            
+          <tr>
+            <th>-</th>
+            <td>{{ conta.pessoa.nome }}</td>            
             <td>{{ conta.descricao }}</td>
             <td>{{ conta.data|date:"d/m/Y" }}</td>
             <td>{{ conta.tipo }}</td>
             <td>{{ conta.valor }}</td>
           </tr>
-        {% endfor %}
-          <tr>
-            <td colspan="2"></td>
-            <td><span style="font-weight:bold;">Total a Receber:</span> {{tot_receber}}</td>
-            <td><span style="font-weight:bold;">Total a Pagar:</span> {{tot_pagar}}</td>
-          </tr>  
+        {% endfor %}          
         </tbody>
       </table>
 </div>
-    
-        
+<button class="btn btn-primary" onclick="window.print();" style="float:right;"> Imprimir <span class="glyphicon glyphicon-print"></span></button>
 
 {% endblock conteudo %}

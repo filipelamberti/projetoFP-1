@@ -14,10 +14,6 @@ def fluxoPesquisar(request):
         data_Final = request.POST.get('data_Final', '%d/%m/%Y')
         total = 0
 
-        try:
-            contas = Conta.objects.filter(data__range=(data_Inicial, data_Final))
-            for conta in contas:
-                total += conta.valor
         except:
             contas = []
 
