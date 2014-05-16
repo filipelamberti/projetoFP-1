@@ -11,7 +11,7 @@
         <div class="form-group">
           <label> Data Inicial</label>
           <div >
-          <input type="date" class="form-control" name="dataInicial" value="{{ dataInicial|date:"d/m/Y" }}" placeholder="00/00/2000" style="margin" />
+          <input type="date" class="form-control" name="data_Inicial" value="{{ data_Inicial|date:'d/m/Y' }}" placeholder="01/01/2014" style="margin" />
          
           </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="form-group">          
           <label> Data Final</label>
         <div>
-          <input type='date' class="form-control" name="dataFinal" value="{{ dataFinal|date:"d/m/Y" }}" placeholder="00/00/2000"/>
+          <input type="date" class="form-control" name="data_Final" value="{{ data_Final|date:'d/m/Y' }}" placeholder="01/01/2014"/>
           
       </div>
       </div>
@@ -40,9 +40,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>-</th>
-            <th>Pessoa</th>
-            <th>Descrição da Conta</th>
+            <th>Nome</th>
+            <th>Descrição:</th>
             <th>Data</th>
             <th>Tipo</th>
             <th class="success">Total</th>
@@ -51,7 +50,6 @@
         <tbody>
         {% for conta in contas %}
           <tr>
-            <th>-</th>
             <td>{{ conta.pessoa.nome }}</td>            
             <td>{{ conta.descricao }}</td>
             <td>{{ conta.data|date:"d/m/Y" }}</td>
