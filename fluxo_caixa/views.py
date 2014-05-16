@@ -15,11 +15,11 @@ def fluxoPesquisar(request):
         total = 0
 
        
-            contas = Conta.objects.filter(data__range=(data_Inicial, data_Final))
-            for conta in contas:
-                total += conta.valor
+        contas = Conta.objects.filter(data__range=(data_Inicial, data_Final))
+        for conta in contas:
+            total += conta.valor
         
-            contas = []
+        contas = []
 
         return render(request, 'fluxo_caixa/lista_fluxo.html', {'contas': contas, 'total': total, 'data_Inicial': data_Inicial, 'data_Final': data_Final})
     
